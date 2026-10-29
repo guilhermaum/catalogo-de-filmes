@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Organize seus filmes, acompanhe o que já assistiu e descubra o que assistir em seguida."
+    />
+
+    <title>MyCineList | Catálogo de Filmes</title>
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <a href="#" class="brand" aria-label="CineList - página inicial">
+          <span class="brand-icon" aria-hidden="true">▶</span>
+          <span>MyCine<span class="brand-highlight">List</span></span>
+        </a>
+
+        <span class="header-label"
+          >CONSTRUA SEU CATÁLOGO PESSOAL DE FILMES</span
+        >
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <section class="hero">
+        <span class="eyebrow">SEJA VOCÊ UM CINÉFILO TAMBÉM</span>
+
+        <h1>Registre seus <span>filmes.</span></h1>
+
+        <p>
+          Organize seus filmes favoritos, acompanhe o que já assistiu e mantenha
+          sua próxima sessão de cinema sempre à mão.
+        </p>
+      </section>
+
+      <section class="summary-grid" aria-label="Resumo do catálogo">
+        <article class="summary-card">
+          <div class="summary-icon purple" aria-hidden="true">▤</div>
+          <div>
+            <p class="summary-label">Total de filmes</p>
+            <strong id="total-movies" class="summary-value">0</strong>
+          </div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-icon green" aria-hidden="true">✓</div>
+          <div>
+            <p class="summary-label">Assistidos</p>
+            <strong id="watched-movies" class="summary-value">0</strong>
+          </div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-icon orange" aria-hidden="true">◷</div>
+          <div>
+            <p class="summary-label">Não assistidos</p>
+            <strong id="unwatched-movies" class="summary-value">0</strong>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ADICIONE À SUA COLEÇÃO</span>
+            <h2 id="form-title">Cadastrar filme</h2>
+          </div>
+
+          <span class="heading-symbol" aria-hidden="true">＋</span>
+        </div>
+
+        <form id="movie-form">
+          <div class="form-grid">
+            <div class="form-group field-title">
+              <label for="movie-title">Título do filme</label>
+              <input
+                id="movie-title"
+                name="title"
+                type="text"
+                placeholder="Ex.: A Origem"
+                required
+                maxlength="120"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-genres">Gênero</label>
+              <input
+                id="movie-genres"
+                name="genres"
+                type="text"
+                placeholder="Ex.: Ficção científica"
+                required
+                maxlength="80"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-year">Ano de lançamento</label>
+              <input
+                id="movie-year"
+                name="year"
+                type="number"
+                placeholder="Ex.: 2010"
+                min="1888"
+                max="2100"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-runtime">Duração (minutos)</label>
+              <input
+                id="movie-runtime"
+                name="runtime"
+                type="number"
+                placeholder="Ex.: 148"
+                min="1"
+                max="1000"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-country">País de origem</label>
+              <input
+                id="movie-country"
+                name="country"
+                type="text"
+                placeholder="Ex.: Estados Unidos"
+                required
+                maxlength="80"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-status">Status</label>
+              <select id="movie-status" name="status" required>
+                <option value="unwatched" selected>Não assistido</option>
+                <option value="watched">Assistido</option>
+              </select>
+            </div>
+
+            <div class="form-group field-summary">
+              <label for="movie-summary">Sinopse</label>
+              <textarea
+                id="movie-summary"
+                name="summary"
+                rows="3"
+                placeholder="Escreva uma breve descrição do filme..."
+                required
+                maxlength="1000"
+              ></textarea>
+            </div>
+          </div>
+
+          <p
+            id="form-message"
+            class="message"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <div class="form-actions">
+            <button type="reset" class="button button-secondary">
+              Limpar formulário
+            </button>
+
+            <button type="submit" class="button button-primary">
+              <span aria-hidden="true">＋</span>
+              Cadastrar filme
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="catalog-section" aria-labelledby="catalog-title">
+        <div class="catalog-heading">
+          <div>
+            <span class="eyebrow">EXPLORE SUA COLEÇÃO</span>
+            <h2 id="catalog-title">Meu catálogo</h2>
+            <p class="catalog-subtitle">
+              Todos os filmes reunidos em um só lugar.
+            </p>
+          </div>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="search-wrapper">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Buscar filme pelo título..."
+              aria-label="Buscar filme pelo título"
+            />
+          </div>
+
+          <div class="filter-wrapper">
+            <label for="status-filter">Status:</label>
+
+            <select id="status-filter">
+              <option value="all">Todos os filmes</option>
+              <option value="watched">Assistidos</option>
+              <option value="unwatched">Não assistidos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="results-heading">
+          <span>Resultados</span>
+          <span id="results-count" class="results-count">0 filmes</span>
+        </div>
+
+        <div
+          id="movie-list"
+          class="movie-grid"
+          aria-live="polite"
+          aria-label="Lista de filmes"
+        ></div>
+      </section>
+
+      <footer class="site-footer">
+        <p>CineList · Seu catálogo, suas histórias.</p>
+      </footer>
+    </main>
+
+    <script type="module" src="./dist/app.js"></script>
+  </body>
+</html>
